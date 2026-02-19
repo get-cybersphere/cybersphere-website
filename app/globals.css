@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ── */
+@theme {
+  --color-bg-page: #f0f0f2;
+  --color-bg-white: #ffffff;
+  --color-bg-gray: #f5f5f5;
+  --color-bg-footer: #09090b;
+
+  --color-text-primary: #111111;
+  --color-text-body: #555566;
+  --color-text-muted: #94949c;
+  --color-text-white: #ffffff;
+
+  --color-blue: #155dfc;
+  --color-blue-hover: #1347d4;
+  --color-blue-light: rgba(21, 93, 252, 0.06);
+
+  --color-border-card: #ececf0;
+  --color-border-line: #e4e4e9;
+
+  --font-sans: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+}
+
+/* ── Base ── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-body);
+    background-color: var(--color-bg-page);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+    line-height: 1.12;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+  }
+
+  h1 {
+    font-size: clamp(44px, calc(44px + 3vw), 76px);
+  }
+
+  h2 {
+    font-size: clamp(34px, calc(34px + 2vw), 58px);
+  }
+
+  h3 {
+    font-size: clamp(20px, calc(20px + 0.5vw), 24px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* ── Components ── */
+@layer components {
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-blue);
+    background: var(--color-blue-light);
+    padding: 7px 18px;
+    border-radius: 9999px;
+    margin-bottom: 20px;
+  }
+
+  .neo-card {
+    background: var(--color-bg-white);
+    border: 1.5px solid var(--color-border-card);
+    border-radius: 20px;
+    padding: 32px 24px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .neo-card:hover {
+    border-color: var(--color-blue);
+    box-shadow: 0 4px 24px rgba(21, 93, 252, 0.06);
+  }
+}
+
+/* scroll animation */
+.fade-up {
+  opacity: 0 !important;
+  transform: translateY(24px) !important;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out !important;
+}
+
+.fade-up.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ── Hide scrollbar utility ── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Ticker / Logo Carousel ── */
+.ticker-container {
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 50s linear infinite;
+}
+
+.ticker-track--reverse {
+  animation-direction: reverse;
+}
+
+.ticker-inner {
+  display: flex;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Orbital Graphic ── */
+.orbital-scene {
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbital-group {
+  position: relative;
+  width: min(420px, 60vw);
+  height: min(420px, 60vw);
+  transform-style: preserve-3d;
+  animation: orbital-spin 30s linear infinite;
+}
+
+.orbital-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.orbital-ring--1 {
+  border-color: #155dfc;
+  transform: rotateX(72deg);
+  box-shadow: 0 0 20px rgba(21, 93, 252, 0.15), inset 0 0 20px rgba(21, 93, 252, 0.05);
+}
+
+.orbital-ring--2 {
+  border-color: #7c3aed;
+  transform: rotateX(72deg) rotateZ(60deg);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15), inset 0 0 20px rgba(124, 58, 237, 0.05);
+}
+
+.orbital-ring--3 {
+  border-color: #06b6d4;
+  transform: rotateX(72deg) rotateZ(-60deg);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+.orbital-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #155dfc;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 30px 8px rgba(21, 93, 252, 0.25);
+}
+
+@keyframes orbital-spin {
+  from {
+    transform: rotateY(0deg) rotateX(12deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(12deg);
+  }
+}
+
+/* ── Hero Entrance Animation ── */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-enter-anim 0.9s ease-out forwards;
+}
+
+.hero-enter-d1 {
+  animation-delay: 0.15s;
+}
+
+.hero-enter-d2 {
+  animation-delay: 0.35s;
+}
+
+.hero-enter-d3 {
+  animation-delay: 0.55s;
+}
+
+@keyframes hero-enter-anim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle floating oscillation for hero graphics */
+.hero-float {
+  animation: hero-float-anim 6s ease-in-out infinite;
+  animation-delay: 1.1s;
+}
+
+@keyframes hero-float-anim {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px) rotate(0.8deg);
+  }
+  50% {
+    transform: translateY(-4px) translateX(-4px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateY(-10px) translateX(2px) rotate(0.6deg);
+  }
+}
