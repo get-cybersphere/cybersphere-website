@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '../assets/images/background/cybersphere_logo_square.png'
+import logo from '../assets/images/background/cybersphere_square_logo.png'
 
 const SOLUTIONS = [
   { label: 'AI Voice Agent', path: '/voice-agent' },

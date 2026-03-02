@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import logo from '../assets/images/background/cybersphere_logo_square.png'
+import logo from '../assets/images/background/cybersphere_square_logo.png'
 
 const NAV_LINKS = [
   { label: 'Voice Agent', path: '/voice-agent' },
