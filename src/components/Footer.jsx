@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import logo from '../assets/images/background/cybersphere_logo_square.png'
 
 const SOLUTIONS = [
   { label: 'AI Voice Agent', path: '/voice-agent' },
@@ -21,9 +22,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-7 h-7 rounded-lg bg-blue flex items-center justify-center">
-                <span className="text-white font-medium text-xs">C</span>
-              </div>
+              <img src={logo} alt="Cybersphere" className="w-7 h-7 rounded-lg object-contain" />
               <span className="font-heading text-[17px] font-normal text-white tracking-tight">
                 Cybersphere
               </span>
