@@ -35,7 +35,7 @@ export default function SubpageHero({ badge, badgeIcon: BadgeIcon, headline, hea
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
             <a
-              href="https://calendly.com/cybersphere"
+              href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center text-[14px] font-medium px-7 py-3 rounded-full bg-blue text-white hover:bg-blue-hover transition-colors"

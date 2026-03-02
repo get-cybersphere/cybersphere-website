@@ -34,7 +34,7 @@ export default function CTASection() {
         </h2>
         <div className="flex items-center gap-6 mt-5 md:justify-end">
           <a
-            href="https://calendly.com/cybersphere"
+            href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em] text-text-primary hover:text-blue transition-colors"

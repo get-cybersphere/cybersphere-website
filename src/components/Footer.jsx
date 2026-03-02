@@ -72,7 +72,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://calendly.com/cybersphere"
+                  href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[14px] text-white/40 hover:text-white transition-colors"

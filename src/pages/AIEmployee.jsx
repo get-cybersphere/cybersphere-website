@@ -731,7 +731,7 @@ export default function AIEmployee() {
           </div>
           <div className="hero-enter hero-enter-d3 flex items-center justify-between mt-6 md:mt-8">
             <a
-              href="https://calendly.com/cybersphere"
+              href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-[18px] font-semibold uppercase tracking-[0.08em] text-white bg-blue hover:bg-blue-hover px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
@@ -778,7 +778,7 @@ export default function AIEmployee() {
 
           <div className="max-w-[1376px] mx-auto px-4 md:px-8 mt-12">
             <a
-              href="https://calendly.com/cybersphere"
+              href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center text-[15px] font-semibold px-8 py-3.5 rounded-full bg-text-primary text-white hover:bg-text-primary/85 transition-colors"

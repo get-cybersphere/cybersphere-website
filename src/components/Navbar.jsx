@@ -63,7 +63,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="https://calendly.com/cybersphere"
+            href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[14px] font-medium px-6 py-2.5 rounded-full bg-blue text-white hover:bg-blue-hover transition-colors"
@@ -99,7 +99,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="https://calendly.com/cybersphere"
+            href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[14px] font-medium px-8 py-3.5 rounded-full bg-blue text-white"

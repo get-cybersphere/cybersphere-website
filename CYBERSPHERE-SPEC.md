@@ -129,7 +129,7 @@ Use Google Fonts. Each font serves a specific purpose:
 - Hover: border color shifts to `--accent`, text color shifts to `--accent`
 
 **CTA destinations (no prices anywhere):**
-- Primary: `https://calendly.com/cybersphere` (opens new tab)
+- Primary: `https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call` (opens new tab)
 - Secondary: `mailto:hello@getcybersphere.com`
 
 ### Cards

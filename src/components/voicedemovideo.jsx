@@ -53,7 +53,7 @@ export default function DemoVideoSection() {
 
             <div className="mt-10">
               <a
-                href="https://calendly.com/cybersphere"
+                href="https://api.leadconnectorhq.com/widget/bookings/cybersphere-ai-implementation-strategy-call"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center text-[15px] font-semibold px-8 py-3.5 rounded-full bg-text-primary text-white hover:bg-text-primary/85 transition-colors"
