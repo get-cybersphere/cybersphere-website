@@ -607,9 +607,9 @@ export default function LeadGen() {
               href="https://calendly.com/cybersphere"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em] text-text-primary hover:text-blue transition-colors"
+              className="inline-flex items-center gap-3 text-[18px] font-semibold uppercase tracking-[0.08em] text-white bg-blue hover:bg-blue-hover px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
-              Book a Call <ArrowUpRight className="w-4 h-4" />
+              Book a Call <ArrowUpRight className="w-6 h-6" />
             </a>
             <p className="text-[12px] text-text-muted hidden sm:block">
               Automated pipeline for ads, web forms & social leads

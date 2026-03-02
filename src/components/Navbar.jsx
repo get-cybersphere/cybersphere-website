@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import logo from '../assets/images/background/cybersphere_logo_1024x1024.png'
 
 const NAV_LINKS = [
   { label: 'Voice Agent', path: '/voice-agent' },
@@ -40,9 +41,7 @@ export default function Navbar() {
       <div className="max-w-[1376px] mx-auto px-4 md:px-8 flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-blue flex items-center justify-center">
-            <span className="text-white font-medium text-sm">C</span>
-          </div>
+          <img src={logo} alt="Cybersphere" className="w-8 h-8 rounded-lg object-contain" />
           <span className="font-heading text-[19px] font-normal tracking-tight text-text-primary">
             Cybersphere
           </span>
