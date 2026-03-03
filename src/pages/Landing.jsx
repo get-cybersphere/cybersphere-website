@@ -160,12 +160,12 @@ export default function Landing() {
 
       {/* ── Core Solutions ── */}
       <FadeUp className="grid lg:grid-cols-2 gap-1.5">
-        <div className="bg-white rounded-[20px] p-8 md:p-12 flex flex-col items-center relative overflow-hidden">
-          <h2 className="font-heading font-bold uppercase leading-[1.05] tracking-[-0.02em] text-center mt-4 md:mt-8">
+        <div className="bg-white rounded-[20px] p-8 md:p-12 flex flex-col items-center relative overflow-hidden min-h-[200px] md:min-h-0">
+          <h2 className="font-heading font-bold uppercase leading-[1.05] tracking-[-0.02em] text-center mt-4 md:mt-8 relative z-10">
             Core<br />Solutions
           </h2>
           <div className="flex-1" />
-          <img src={offeringsBg} alt="" className="absolute bottom-0 left-0 w-[75%] max-w-[320px] h-auto pointer-events-none" />
+          <img src={offeringsBg} alt="" className="absolute bottom-0 left-0 w-[50%] md:w-[75%] max-w-[320px] h-auto pointer-events-none opacity-50 md:opacity-100" />
         </div>
         <div className="flex flex-col gap-1.5">
           {SOLUTIONS.map((sol, i) => {

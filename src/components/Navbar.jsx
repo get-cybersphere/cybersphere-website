@@ -32,9 +32,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-border-line'
+      className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-300 ${
+        scrolled || mobileOpen
+          ? 'bg-white backdrop-blur-xl border-b border-border-line'
           : 'bg-transparent'
       }`}
     >
@@ -84,7 +84,7 @@ export default function Navbar() {
 
       {/* Mobile Overlay */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-40 flex flex-col items-center justify-center gap-8">
+        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-[100] flex flex-col items-center justify-center gap-8">
           {NAV_LINKS.map(link => (
             <Link
               key={link.path}

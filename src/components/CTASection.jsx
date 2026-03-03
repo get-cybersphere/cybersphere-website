@@ -12,7 +12,7 @@ export default function CTASection() {
     >
       {/* Graphic — pushed left */}
       <div className="absolute inset-0 flex items-center justify-center md:justify-start md:pl-[8%] pointer-events-none">
-        <img src={ctaBg} alt="" className="w-[min(420px,55vw)] h-auto translate-x-[10%]" />
+        <img src={ctaBg} alt="" className="w-[min(420px,55vw)] h-auto translate-x-[10%] -translate-y-[10%] md:translate-y-0 opacity-40 md:opacity-100" />
       </div>
 
       {/* Top-left: description */}

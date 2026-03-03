@@ -1,4 +1,5 @@
-import { Headphones, ArrowUpRight } from 'lucide-react'
+import { useState } from 'react'
+import { Headphones, ArrowUpRight, Volume2, VolumeX } from 'lucide-react'
 import HearItYourself from '../components/HearItYourself'
 import CTASection from '../components/CTASection'
 import { useFadeUp } from '../hooks/useScrollAnimation'
@@ -52,6 +53,8 @@ const NUMBER_CARDS = [
 ]
 
 export default function VoiceAgent() {
+  const [muted, setMuted] = useState(true)
+
   return (
     <>
       {/* -- Hero -- */}
@@ -186,14 +189,40 @@ export default function VoiceAgent() {
               </div>
             </div>
 
-            {/* Right — placeholder */}
+            {/* Right — video demo */}
             <div className="w-full lg:w-7/12 order-1 lg:order-2">
-              <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-white border border-border-line flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-bg-gray flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-7 h-7 text-text-muted" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                  <p className="text-text-muted text-sm">Demo video coming soon</p>
+              <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-white border border-border-line">
+                <video
+                  autoPlay
+                  muted={muted}
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source src="https://newo.ai/wp-content/uploads/2026/02/dental_video.mp4" type="video/mp4" />
+                </video>
+
+                {/* Mute/Unmute button */}
+                <div className="absolute top-4 right-4">
+                  <button
+                    onClick={() => setMuted((m) => !m)}
+                    className="bg-black/70 hover:bg-black backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-full flex items-center gap-2 transition-colors"
+                  >
+                    {muted ? (
+                      <>
+                        <VolumeX className="w-4 h-4" /> Unmute
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="w-4 h-4" /> Mute
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Bottom label */}
+                <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-[12px] font-medium px-3 py-1.5 rounded-full">
+                  AI Receptionist Demo — Healthcare
                 </div>
               </div>
             </div>

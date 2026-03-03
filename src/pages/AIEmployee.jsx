@@ -790,7 +790,7 @@ export default function AIEmployee() {
       </section>
 
       {/* -- VLS / Demo Section -- */}
-      <VLSSection label="Watch the AI Employee Handle a Full Day of Admin" />
+      <VLSSection label="Watch the AI Employee Handle a Full Day of Admin" variant="aiEmployee" />
 
       {/* -- CTA -- */}
       <CTASection />
