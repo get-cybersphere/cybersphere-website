@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/images/background/cybersphere_square_logo.png'
 
 const SOLUTIONS = [
-  { label: 'AI Voice Agent', path: '/voice-agent' },
+  { label: 'AI Voice Receptionist', path: '/voice-agent' },
   { label: 'AI Lead Gen Engine', path: '/lead-gen' },
   { label: 'AI Personal Employee', path: '/ai-employee' },
   { label: 'AI Pentesting', path: '/pentesting' },
@@ -95,8 +95,8 @@ export default function Footer() {
         <div className="mt-14 pt-6 border-t border-white/8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] text-white/30">
           <p>&copy; {new Date().getFullYear()} Cybersphere. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white/60 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white/60 transition-colors">Terms of Service</a>
+            <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-white/60 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

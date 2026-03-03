@@ -47,7 +47,7 @@ const NUMBER_CARDS = [
     number: '4.7x',
     title: 'Cost efficiency\nvs. staffing',
     description:
-      'Replacing a dedicated receptionist with an AI agent costs a fraction of a full-time salary while handling unlimited concurrent calls around the clock.',
+      'Replacing a dedicated receptionist with an AI voice receptionist costs a fraction of a full-time salary while handling unlimited concurrent calls around the clock.',
   },
 ]
 
@@ -128,7 +128,7 @@ export default function VoiceAgent() {
         <FadeUp className="max-w-[1376px] mx-auto px-4 md:px-8 py-16 md:py-24">
           <h2 className="mb-3">The Numbers Speak</h2>
           <p className="text-text-body text-lg mb-12 max-w-2xl leading-relaxed">
-            Measurable outcomes from businesses that switched to an AI voice agent.
+            Measurable outcomes from businesses that switched to an AI voice receptionist.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -170,7 +170,7 @@ export default function VoiceAgent() {
                 <p>
                   Point us to your website. Our system scans your{' '}
                   <span className="font-semibold text-text-primary">services, hours, and pricing</span>{' '}
-                  then builds a fully trained voice agent tailored to your business — ready
+                  then builds a fully trained voice receptionist tailored to your business — ready
                   to take calls the same afternoon.
                 </p>
                 <p>

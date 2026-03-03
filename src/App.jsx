@@ -7,6 +7,8 @@ import VoiceAgent from './pages/VoiceAgent'
 import LeadGen from './pages/LeadGen'
 import AIEmployee from './pages/AIEmployee'
 import Pentesting from './pages/Pentesting'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -28,6 +30,8 @@ export default function App() {
           <Route path="/lead-gen" element={<LeadGen />} />
           <Route path="/ai-employee" element={<AIEmployee />} />
           <Route path="/pentesting" element={<Pentesting />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
       </main>
       <Footer />

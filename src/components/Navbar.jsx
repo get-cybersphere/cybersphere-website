@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import logo from '../assets/images/background/cybersphere_square_logo.png'
 
 const NAV_LINKS = [
-  { label: 'Voice Agent', path: '/voice-agent' },
+  { label: 'Voice Receptionist', path: '/voice-agent' },
   { label: 'Lead Gen', path: '/lead-gen' },
   { label: 'AI Employee', path: '/ai-employee' },
   { label: 'Pentesting', path: '/pentesting' },

@@ -33,8 +33,8 @@ function FadeUp({ children, className = '' }) {
 const SOLUTIONS = [
   {
     icon: Headphones,
-    label: 'Voice Agent',
-    title: 'AI Voice Agent',
+    label: 'Voice Receptionist',
+    title: 'AI Voice Receptionist',
     description: '24/7 intelligent call answering that qualifies leads, books appointments, and recovers missed calls.',
     path: '/voice-agent',
   },
@@ -70,7 +70,7 @@ const PROCESS = [
 
 const TESTIMONIALS = [
   {
-    quote: "Since deploying the AI voice agent, we've recovered an average of 47 missed calls per week. That's bookings we were simply leaving on the table.",
+    quote: "Since deploying the AI voice receptionist, we've recovered an average of 47 missed calls per week. That's bookings we were simply leaving on the table.",
     name: 'Sarah Mitchell',
     role: 'Operations Director',
     company: 'Elite Fitness Group',
