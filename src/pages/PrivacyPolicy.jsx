@@ -94,8 +94,8 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="text-[15px] text-text-body leading-[1.8] mt-4">
                 To exercise these rights, contact us at{' '}
-                <a href="mailto:hello@getcybersphere.com" className="text-blue hover:underline">
-                  hello@getcybersphere.com
+                <a href="mailto:archie@getcybersphere.com" className="text-blue hover:underline">
+                  archie@getcybersphere.com
                 </a>.
               </p>
             </section>
@@ -130,8 +130,8 @@ export default function PrivacyPolicy() {
                 <p className="font-semibold text-text-primary">Cybersphere</p>
                 <p>
                   Email:{' '}
-                  <a href="mailto:hello@getcybersphere.com" className="text-blue hover:underline">
-                    hello@getcybersphere.com
+                  <a href="mailto:archie@getcybersphere.com" className="text-blue hover:underline">
+                    archie@getcybersphere.com
                   </a>
                 </p>
                 <p>

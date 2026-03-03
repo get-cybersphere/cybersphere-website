@@ -42,7 +42,7 @@ export default function CTASection() {
             Schedule a Call <ArrowUpRight className="w-4 h-4" />
           </a>
           <a
-            href="mailto:hello@getcybersphere.com"
+            href="mailto:archie@getcybersphere.com"
             className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em] text-text-muted hover:text-text-primary transition-colors"
           >
             Email Us <ArrowUpRight className="w-4 h-4" />
