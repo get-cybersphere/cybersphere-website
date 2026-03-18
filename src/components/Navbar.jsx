@@ -33,12 +33,15 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-300 ${
-        scrolled || mobileOpen
+        mobileOpen
+          ? 'h-screen bg-white flex flex-col'
+          : scrolled
           ? 'bg-white backdrop-blur-xl border-b border-border-line'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-[1376px] mx-auto px-4 md:px-8 flex items-center justify-between h-[72px]">
+      {/* Top bar */}
+      <div className="max-w-[1376px] mx-auto px-4 md:px-8 flex items-center justify-between h-[72px] shrink-0">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5">
           <img src={logo} alt="Cybersphere" className="w-8 h-8 rounded-lg object-contain" />
@@ -82,9 +85,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-[100] flex flex-col items-center justify-center gap-8">
+        <div className="lg:hidden flex flex-col items-center justify-center gap-8 flex-1">
           {NAV_LINKS.map(link => (
             <Link
               key={link.path}
