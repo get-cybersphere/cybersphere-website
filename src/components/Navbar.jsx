@@ -32,12 +32,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-300 ${
+      className={`fixed z-[110] transition-all duration-300 ${
         mobileOpen
-          ? 'h-screen bg-white flex flex-col'
-          : scrolled
-          ? 'bg-white backdrop-blur-xl border-b border-border-line'
-          : 'bg-transparent'
+          ? 'inset-0 bg-white flex flex-col overflow-hidden'
+          : `top-0 left-0 right-0 ${scrolled
+              ? 'bg-white backdrop-blur-xl border-b border-border-line'
+              : 'bg-transparent'}`
       }`}
     >
       {/* Top bar */}
