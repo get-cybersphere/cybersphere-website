@@ -20,10 +20,10 @@ import offeringsBg from '../assets/images/background/offerings.png'
 import offering1Bg from '../assets/images/background/offering1.png'
 import offering2Bg from '../assets/images/background/offering2.png'
 
-function FadeUp({ children, className = '' }) {
+function FadeUp({ children, className = '', id }) {
   const anim = useFadeUp()
   return (
-    <div ref={anim.ref} className={`${anim.className} ${className}`}>
+    <div ref={anim.ref} id={id} className={`${anim.className} ${className}`}>
       {children}
     </div>
   )
@@ -159,7 +159,7 @@ export default function Landing() {
       </section>
 
       {/* ── Core Solutions ── */}
-      <FadeUp className="grid lg:grid-cols-2 gap-1.5">
+      <FadeUp id="about" className="grid lg:grid-cols-2 gap-1.5">
         <div className="bg-white rounded-[20px] p-8 md:p-12 flex flex-col items-center relative overflow-hidden min-h-[200px] md:min-h-0">
           <h2 className="font-heading font-bold uppercase leading-[1.05] tracking-[-0.02em] text-center mt-4 md:mt-8 relative z-10">
             Core<br />Solutions
@@ -210,7 +210,7 @@ export default function Landing() {
       </FadeUp>
 
       {/* ── Process ── */}
-      <FadeUp>
+      <FadeUp id="process">
         <div className="bg-white rounded-[20px] p-8 md:p-10 lg:p-12">
           <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-6">
             <p className="text-[11px] md:text-[12px] font-medium uppercase tracking-[0.1em] text-text-muted max-w-[340px] leading-[1.8]">
@@ -262,7 +262,7 @@ export default function Landing() {
       <LogoTicker />
 
       {/* ── Testimonials ── */}
-      <FadeUp className="bg-white rounded-[20px] py-12 md:py-16">
+      <FadeUp id="results" className="bg-white rounded-[20px] py-12 md:py-16">
         <div className="max-w-[1376px] mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
             <SectionLabel text="Client Results" />

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/background/cybersphere_square_logo.png'
 
 const SOLUTIONS = [
@@ -9,12 +9,27 @@ const SOLUTIONS = [
 ]
 
 const COMPANY = [
-  { label: 'About', path: '/' },
-  { label: 'Process', path: '/' },
-  { label: 'Results', path: '/' },
+  { label: 'About', path: '/#about' },
+  { label: 'Process', path: '/#process' },
+  { label: 'Results', path: '/#results' },
 ]
 
 export default function Footer() {
+  const navigate = useNavigate()
+
+  const scrollToSection = (e, path) => {
+    e.preventDefault()
+    const hash = path.split('#')[1]
+    if (window.location.pathname === '/') {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }
+
   return (
     <footer className="bg-bg-footer">
       <div className="max-w-[1376px] mx-auto px-4 md:px-8 py-16">
@@ -56,9 +71,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {COMPANY.map(item => (
                 <li key={item.label}>
-                  <Link to={item.path} className="text-[14px] text-white/40 hover:text-white transition-colors">
+                  <a
+                    href={item.path}
+                    onClick={(e) => scrollToSection(e, item.path)}
+                    className="text-[14px] text-white/40 hover:text-white transition-colors"
+                  >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -78,14 +97,6 @@ export default function Footer() {
                   className="text-[14px] text-white/40 hover:text-white transition-colors"
                 >
                   Schedule a Discovery Call
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:archie@getcybersphere.com"
-                  className="text-[14px] text-white/40 hover:text-white transition-colors"
-                >
-                  archie@getcybersphere.com
                 </a>
               </li>
             </ul>

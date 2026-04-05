@@ -23,7 +23,7 @@ export default function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <main>
+      <main className="relative z-0">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/voice-agent" element={<VoiceAgent />} />

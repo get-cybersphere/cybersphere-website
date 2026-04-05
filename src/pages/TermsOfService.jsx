@@ -17,7 +17,7 @@ export default function TermsOfService() {
           <h1 className="font-heading font-bold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-text-primary mb-4">
             Terms and Conditions
           </h1>
-          <p className="text-[14px] text-text-muted mb-12">Last updated: March 2, 2026</p>
+          <p className="text-[14px] text-text-muted mb-12">Last updated: April 4, 2026</p>
 
           <p className="text-[15px] text-text-body leading-[1.8] mb-10">
             Welcome to Cybersphere ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your use of our website getcybersphere.com, products, and services.
@@ -30,10 +30,7 @@ export default function TermsOfService() {
             <section className="mb-10">
               <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">1. Use of Our Website and Services</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                You agree to use our website and services only for lawful purposes and in accordance with these Terms.
-              </p>
-              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                You are responsible for ensuring that your use complies with all applicable laws and regulations.
+                You agree to use our website and services only for lawful purposes and in accordance with these Terms. You are responsible for ensuring that your use complies with all applicable laws and regulations.
               </p>
               <p className="text-[15px] text-text-body leading-[1.8] mb-3">You must not:</p>
               <ul className="list-disc list-inside space-y-2 text-[15px] text-text-body leading-[1.8]">
@@ -46,23 +43,21 @@ export default function TermsOfService() {
             <section className="mb-10">
               <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">2. Accounts and Purchases</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                When you create an account or make a purchase, you agree to provide accurate, complete, and up-to-date information.
-              </p>
-              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                You are responsible for maintaining the confidentiality of your account and password.
+                When you create an account or make a purchase, you agree to provide accurate, complete, and up-to-date information. You are responsible for maintaining the confidentiality of your account and password.
               </p>
               <p className="text-[15px] text-text-body leading-[1.8]">
-                We reserve the right to refuse or cancel any order at any time for reasons including suspected fraud, unauthorized use, or product/service availability.
+                We reserve the right to refuse or cancel any order at any time for reasons including suspected fraud, unauthorized use, or product or service availability.
               </p>
             </section>
 
             <section className="mb-10">
               <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">3. Payment and Refund Policy</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                All payments must be made in full at the time of purchase unless otherwise stated.
-              </p>
-              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                Refunds, if applicable, are handled according to our Refund Policy.
+                All payments must be made in full at the time of purchase unless otherwise stated. Refunds, if applicable, are handled on a case-by-case basis — please contact us directly at{' '}
+                <a href="mailto:neetish@getcybersphere.com" className="text-blue hover:underline">
+                  neetish@getcybersphere.com
+                </a>{' '}
+                to discuss any refund requests.
               </p>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 If you fail to pay for services rendered, we reserve the right to suspend or terminate access to your account or services.
@@ -72,7 +67,7 @@ export default function TermsOfService() {
             <section className="mb-10">
               <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">4. Intellectual Property</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                All content on this website—including text, graphics, logos, videos, and software—is the property of Cybersphere or its licensors and is protected by copyright and trademark laws.
+                All content on this website — including text, graphics, logos, videos, and software — is the property of Cybersphere or its licensors and is protected by copyright and trademark laws.
               </p>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 You may not reproduce, distribute, or modify any materials from our website without our express written consent.
@@ -80,17 +75,43 @@ export default function TermsOfService() {
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">5. Disclaimer of Warranties</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">5. SMS Messaging Program</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
-                Our website and services are provided "as is" and "as available."
+                <strong className="text-text-primary">Cybersphere Notifications</strong>
+                <br />
+                This campaign sends appointment information - confirmation & reminder messages to our customers once they have booked an appointment with us on our website and opted-in to receive promotional and notification SMS from us.
+              </p>
+              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
+                You can cancel the SMS service at any time. Simply text "STOP" to the shortcode. Upon sending "STOP," we will confirm your unsubscribe status via SMS. Following this confirmation, you will no longer receive SMS messages from us. To rejoin, sign up as you did initially, and we will resume sending SMS messages to you.
+              </p>
+              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
+                If you experience issues with the messaging program, reply with the keyword HELP for more assistance, or reach out directly to{' '}
+                <a href="mailto:neetish@getcybersphere.com" className="text-blue hover:underline">
+                  neetish@getcybersphere.com
+                </a>.
+              </p>
+              <p className="text-[15px] text-text-body leading-[1.8] mb-4">
+                Carriers are not liable for delayed or undelivered messages.
+                <br />
+                As always, message and data rates may apply for messages sent to you from us and to us from you. Message frequency varies. For questions about your text plan or data plan, contact your wireless provider.
               </p>
               <p className="text-[15px] text-text-body leading-[1.8]">
-                We make no warranties, express or implied, regarding the operation of the website, accuracy of information, or suitability for a particular purpose.
+                For privacy-related inquiries, please refer to our privacy policy:{' '}
+                <a href="/privacy-policy" className="text-blue hover:underline">
+                  https://getcybersphere.com/privacy-policy
+                </a>
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">6. Limitation of Liability</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">6. Disclaimer of Warranties</h2>
+              <p className="text-[15px] text-text-body leading-[1.8]">
+                Our website and services are provided "as is" and "as available." We make no warranties, express or implied, regarding the operation of the website, accuracy of information, or suitability for a particular purpose.
+              </p>
+            </section>
+
+            <section className="mb-10">
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">7. Limitation of Liability</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
                 To the fullest extent permitted by law, Cybersphere and its affiliates shall not be liable for any indirect, incidental, consequential, or punitive damages arising out of your use or inability to use our website or services.
               </p>
@@ -100,42 +121,42 @@ export default function TermsOfService() {
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">7. Indemnification</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">8. Indemnification</h2>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 You agree to indemnify and hold harmless Cybersphere, its officers, employees, and partners from any claims, damages, or expenses (including legal fees) arising from your use of our website or violation of these Terms.
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">8. Third-Party Links</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">9. Third-Party Links</h2>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 Our website may contain links to external websites not operated by us. We are not responsible for the content or privacy practices of these third-party sites.
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">9. Termination</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">10. Termination</h2>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 We may suspend or terminate your access to our website or services at any time, without notice, if we believe you have violated these Terms or engaged in fraudulent activity.
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">10. Governing Law</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">11. Governing Law</h2>
               <p className="text-[15px] text-text-body leading-[1.8]">
-                These Terms shall be governed by and interpreted in accordance with the laws of the State of Delaware, without regard to conflict of law principles.
+                These Terms shall be governed by and interpreted in accordance with the laws of the State of New York, without regard to conflict of law principles.
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">11. Changes to These Terms</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">12. Changes to These Terms</h2>
               <p className="text-[15px] text-text-body leading-[1.8]">
                 We may update or modify these Terms from time to time. Updates will be posted on this page with the "Last updated" date. Your continued use of our website signifies acceptance of the revised Terms.
               </p>
             </section>
 
             <section className="mb-10">
-              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">12. Contact Us</h2>
+              <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">13. Contact Us</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">
                 If you have any questions about these Terms and Conditions, please contact us at:
               </p>
@@ -143,8 +164,8 @@ export default function TermsOfService() {
                 <p className="font-semibold text-text-primary">Cybersphere</p>
                 <p>
                   Email:{' '}
-                  <a href="mailto:archie@getcybersphere.com" className="text-blue hover:underline">
-                    archie@getcybersphere.com
+                  <a href="mailto:neetish@getcybersphere.com" className="text-blue hover:underline">
+                    neetish@getcybersphere.com
                   </a>
                 </p>
                 <p>
