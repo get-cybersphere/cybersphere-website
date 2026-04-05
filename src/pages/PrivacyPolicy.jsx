@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
           <h1 className="font-heading font-bold text-[36px] md:text-[48px] leading-[1.1] tracking-[-0.02em] text-text-primary mb-4">
             Privacy Policy
           </h1>
-          <p className="text-[14px] text-text-muted mb-12">Last updated: March 2, 2026</p>
+          <p className="text-[14px] text-text-muted mb-12">Last updated: April 4, 2026</p>
 
           <div className="prose prose-gray max-w-none">
             <section className="mb-10">
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
               <h2 className="font-heading font-semibold text-[22px] text-text-primary mb-4">3. How We Use Your Information</h2>
               <p className="text-[15px] text-text-body leading-[1.8] mb-4">We use the information we collect to:</p>
               <ul className="list-disc list-inside space-y-2 text-[15px] text-text-body leading-[1.8]">
-                <li>Operate, and improve our products and services</li>
+                <li>Provide, operate, and improve our products and services</li>
                 <li>Process payments and complete transactions</li>
                 <li>Communicate with you about updates, offers, or support</li>
                 <li>Analyze usage to enhance site performance and marketing</li>
@@ -72,6 +72,9 @@ export default function PrivacyPolicy() {
                   <strong className="text-text-primary">Business Transfers:</strong> In case of a merger, acquisition, or sale of assets.
                 </li>
               </ul>
+              <p className="text-[15px] text-text-body leading-[1.8] mt-4">
+                <strong className="text-text-primary">Mobile Data Sharing:</strong> No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. Information sharing to subcontractors in support services, such as customer service is permitted. All other use case categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+              </p>
             </section>
 
             <section className="mb-10">
@@ -94,8 +97,8 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="text-[15px] text-text-body leading-[1.8] mt-4">
                 To exercise these rights, contact us at{' '}
-                <a href="mailto:archie@getcybersphere.com" className="text-blue hover:underline">
-                  archie@getcybersphere.com
+                <a href="mailto:neetish@getcybersphere.com" className="text-blue hover:underline">
+                  neetish@getcybersphere.com
                 </a>.
               </p>
             </section>
@@ -130,8 +133,8 @@ export default function PrivacyPolicy() {
                 <p className="font-semibold text-text-primary">Cybersphere</p>
                 <p>
                   Email:{' '}
-                  <a href="mailto:archie@getcybersphere.com" className="text-blue hover:underline">
-                    archie@getcybersphere.com
+                  <a href="mailto:neetish@getcybersphere.com" className="text-blue hover:underline">
+                    neetish@getcybersphere.com
                   </a>
                 </p>
                 <p>

@@ -32,11 +32,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed z-[110] transition-all duration-300 ${
+      style={{ position: 'fixed', zIndex: 9999, WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}
+      className={`left-0 right-0 w-full ${
         mobileOpen
-          ? 'inset-0 bg-white flex flex-col overflow-hidden'
-          : `top-0 left-0 right-0 ${scrolled
-              ? 'bg-white backdrop-blur-xl border-b border-border-line'
+          ? 'inset-0 bg-bg-footer flex flex-col overflow-hidden'
+          : `top-0 transition-colors duration-300 ${scrolled
+              ? 'bg-white border-b border-border-line'
               : 'bg-transparent'}`
       }`}
     >
@@ -45,7 +46,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5">
           <img src={logo} alt="Cybersphere" className="w-8 h-8 rounded-lg object-contain" />
-          <span className="font-heading text-[19px] font-normal tracking-tight text-text-primary">
+          <span className={`font-heading text-[19px] font-normal tracking-tight ${mobileOpen ? 'text-white' : 'text-text-primary'}`}>
             Cybersphere
           </span>
         </Link>
@@ -77,7 +78,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="lg:hidden p-2 text-text-primary"
+          className={`lg:hidden p-2 ${mobileOpen ? 'text-white' : 'text-text-primary'}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -94,8 +95,8 @@ export default function Navbar() {
               to={link.path}
               className={`font-heading text-2xl font-light transition-colors ${
                 location.pathname === link.path
-                  ? 'text-text-primary'
-                  : 'text-text-muted'
+                  ? 'text-white'
+                  : 'text-white/50'
               }`}
             >
               {link.label}
