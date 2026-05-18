@@ -1,0 +1,6 @@
+[deployment]
+deploymentTarget = "static"
+publicDir = "dist"
+
+[agent]
+expertMode = true
