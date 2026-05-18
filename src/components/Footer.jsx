@@ -104,11 +104,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-white/8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] text-white/30">
-          <p>&copy; {new Date().getFullYear()} Cybersphere. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="relative z-10 flex gap-6 order-2 sm:order-1">
             <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-white/60 transition-colors">Terms of Service</Link>
           </div>
+          <p className="order-1 sm:order-2">&copy; {new Date().getFullYear()} Cybersphere. All rights reserved.</p>
         </div>
       </div>
     </footer>
