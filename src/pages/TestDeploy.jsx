@@ -2,7 +2,7 @@
 // Rebuilt from the design reference in the project's own system (Tailwind tokens,
 // framer-motion, lucide, CTASection). Once approved → becomes Pentesting.jsx.
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowUpRight, Check, Github, CreditCard, Layers, Crosshair,
   Globe, AppWindow, Network, Cloud, Mail, ChevronDown, Lock, ScanEye,
@@ -56,13 +56,143 @@ function Radar() {
           STATUS <span style={{ color: SEV.crit }}>● AGENT LIVE · MAPPING PATHS</span>
         </div>
       </div>
-      {/* floating finding card */}
-      <motion.div className="absolute top-[6%] right-0 w-[208px] bg-white border border-[#e5e5e5] rounded-2xl p-3.5 shadow-xl"
-        animate={{ y: [0, -9, 0] }} transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}>
-        <div className="font-mono text-[10px] font-bold uppercase tracking-wider" style={{ color: SEV.crit }}>● Critical</div>
-        <div className="font-heading font-bold text-sm mt-1.5 text-text-primary">Default VPN credentials</div>
-        <div className="font-mono text-[11px] text-text-muted mt-0.5">vpn.bank-corp.io · CVSS 9.1</div>
-      </motion.div>
+      <FloatingFinding />
+    </div>
+  )
+}
+
+/* floating finding card that cycles through real findings */
+const FLOAT_FINDS = [
+  { sev: 'Critical', t: 'Default VPN credentials', meta: 'vpn.acme-corp.io · CVSS 9.1' },
+  { sev: 'Critical', t: 'Unauthenticated customer records', meta: '/api/v2/accounts · CVSS 8.6' },
+  { sev: 'High', t: 'Flat internal network', meta: '10.0.0.0/8 · CVSS 7.4' },
+  { sev: 'High', t: 'Phishing: 38% gave credentials', meta: 'social-engineering · CVSS 7.1' },
+]
+function FloatingFinding() {
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    const t = setTimeout(() => setI(n => (n + 1) % FLOAT_FINDS.length), 3000)
+    return () => clearTimeout(t)
+  }, [i])
+  const f = FLOAT_FINDS[i]
+  const col = f.sev === 'Critical' ? SEV.crit : SEV.high
+  return (
+    <motion.div className="absolute top-[6%] right-0 w-[224px] bg-white border border-[#e5e5e5] rounded-2xl p-3.5 shadow-xl z-10"
+      animate={{ y: [0, -9, 0] }} transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}>
+      <AnimatePresence mode="wait">
+        <motion.div key={i} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.35 }}>
+          <div className="font-mono text-[10px] font-bold uppercase tracking-wider" style={{ color: col }}>● {f.sev}</div>
+          <div className="font-heading font-bold text-sm mt-1.5 text-text-primary leading-snug">{f.t}</div>
+          <div className="font-mono text-[11px] text-text-muted mt-0.5">{f.meta}</div>
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
+/* ── Option A: network attack-path map ── */
+function NetworkMap() {
+  const nodes = [
+    { x: 18, y: 100, k: 'entry' }, { x: 58, y: 52 }, { x: 58, y: 148 },
+    { x: 100, y: 100, k: 'hub' }, { x: 142, y: 44 }, { x: 142, y: 100 },
+    { x: 142, y: 156 }, { x: 182, y: 100, k: 'crit' },
+  ]
+  const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5], [3, 6], [5, 7], [6, 7], [4, 5]]
+  const path = [0, 1, 3, 5, 7]
+  const d = path.map((i, idx) => (idx ? 'L' : 'M') + nodes[i].x + ' ' + nodes[i].y).join(' ')
+  return (
+    <div className="relative w-full max-w-[480px] mx-auto aspect-square grid place-items-center">
+      <div className="relative w-full aspect-square rounded-[24px] overflow-hidden border border-white/[0.07]"
+        style={{ background: 'radial-gradient(circle at 50% 42%,#101116 0%,#0a0b0f 78%)', boxShadow: 'inset 0 0 60px rgba(21,93,252,.10)' }}>
+        <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full">
+          {edges.map(([a, b], i) => (
+            <line key={i} x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y} stroke="rgba(255,255,255,.10)" strokeWidth="1" />
+          ))}
+          <motion.path d={d} fill="none" stroke="#155dfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            style={{ filter: 'drop-shadow(0 0 4px rgba(21,93,252,.85))' }}
+            initial={{ pathLength: 0, opacity: 0.25 }} animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2.4, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }} />
+          {nodes.map((n, i) => {
+            const crit = n.k === 'crit'
+            const onPath = path.includes(i)
+            return (
+              <g key={i}>
+                {onPath && (
+                  <motion.circle cx={n.x} cy={n.y} r="6" fill="none" stroke={crit ? SEV.crit : '#155dfc'} strokeWidth="1.4"
+                    style={{ transformOrigin: `${n.x}px ${n.y}px` }}
+                    initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: [0, 0.7, 0], scale: [0.5, 1.8, 2.3] }}
+                    transition={{ duration: 1.6, repeat: Infinity, delay: path.indexOf(i) * 0.45 }} />
+                )}
+                <circle cx={n.x} cy={n.y} r={n.k === 'hub' || crit ? 6 : 4.5}
+                  fill={crit ? SEV.crit : n.k === 'entry' ? '#fff' : '#155dfc'} />
+              </g>
+            )
+          })}
+        </svg>
+        <div className="absolute left-3.5 bottom-3.5 font-mono text-[10.5px] leading-[1.7] text-white/55">
+          MAPPING <b className="text-white">1,284</b> hosts · <b className="text-white">312</b> open ports<br />
+          ATTACK PATH <span style={{ color: SEV.crit }}>● internet → domain admin</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ── Option B: code / vulnerability scanner ── */
+function CodeScan() {
+  const lines = [
+    { w: '68%' }, { w: '44%', ind: 1 }, { w: '58%', ind: 1, flag: 'crit', tag: 'SQLi' }, { w: '50%', ind: 2 },
+    { w: '64%' }, { w: '40%', ind: 1 }, { w: '56%', ind: 1, flag: 'high', tag: 'XSS' }, { w: '46%', ind: 2 },
+    { w: '60%' }, { w: '38%', ind: 1 }, { w: '54%' }, { w: '42%', ind: 1, flag: 'high', tag: 'IDOR' }, { w: '48%', ind: 1 },
+  ]
+  const tagStyle = f => f === 'crit'
+    ? { color: '#ff7a7e', background: 'rgba(229,72,77,.16)' }
+    : { color: '#ffa05a', background: 'rgba(247,104,8,.16)' }
+  return (
+    <div className="relative w-full max-w-[480px] mx-auto aspect-square grid place-items-center">
+      <div className="relative w-full aspect-square rounded-[24px] overflow-hidden border border-white/10"
+        style={{ background: '#0a0b0f', boxShadow: 'inset 0 0 60px rgba(21,93,252,.08)' }}>
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.08]">
+          <i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" />
+          <span className="font-mono text-[11px] text-white/50 ml-1.5">scanner · app.acme-corp.io</span>
+        </div>
+        <div className="p-5 space-y-[11px]">
+          {lines.map((l, i) => (
+            <div key={i} className="flex items-center gap-2" style={{ paddingLeft: (l.ind || 0) * 16 }}>
+              <span className="font-mono text-[9px] text-white/25 w-3 text-right">{i + 1}</span>
+              <span className="h-2.5 rounded" style={{ width: l.w, background: l.flag ? (l.flag === 'crit' ? 'rgba(229,72,77,.5)' : 'rgba(247,104,8,.5)') : 'rgba(255,255,255,.10)' }} />
+              {l.tag && <span className="font-mono text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide" style={tagStyle(l.flag)}>{l.tag}</span>}
+            </div>
+          ))}
+        </div>
+        {/* scan beam */}
+        <motion.div className="absolute inset-x-0 h-12 pointer-events-none"
+          style={{ background: 'linear-gradient(180deg, rgba(21,93,252,0), rgba(21,93,252,.20), rgba(21,93,252,0))' }}
+          initial={{ top: '8%' }} animate={{ top: ['8%', '82%', '8%'] }} transition={{ duration: 4.5, ease: 'easeInOut', repeat: Infinity }} />
+        <div className="absolute left-3.5 bottom-3.5 font-mono text-[10.5px] leading-[1.7] text-white/55">
+          SCANNING <b className="text-white">2,188</b> files<br />
+          <span style={{ color: SEV.crit }}>● 2 critical</span> · <span style={{ color: SEV.high }}>5 high</span> validated
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* auto-alternates between the network map and code scan, with a cycling finding card */
+function HeroVisual() {
+  const [v, setV] = useState('network')
+  useEffect(() => {
+    const t = setTimeout(() => setV(p => (p === 'network' ? 'code' : 'network')), 6000)
+    return () => clearTimeout(t)
+  }, [v])
+  return (
+    <div className="relative w-full max-w-[480px] mx-auto">
+      <AnimatePresence mode="wait">
+        <motion.div key={v} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.5, ease: 'easeInOut' }}>
+          {v === 'network' ? <NetworkMap /> : <CodeScan />}
+        </motion.div>
+      </AnimatePresence>
+      <FloatingFinding />
     </div>
   )
 }
@@ -98,7 +228,7 @@ function Hero() {
             </div>
           </motion.div>
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }}>
-            <Radar />
+            <HeroVisual />
           </motion.div>
         </div>
 
@@ -108,7 +238,7 @@ function Hero() {
             { value: '150+', label: 'Audits completed' },
             { value: '99.8%', label: 'Threat detection' },
             { value: '48hr', label: 'Report delivery' },
-            { value: '0', label: 'False positives' },
+            { value: '~0', label: 'Minimal false positives' },
           ].map(s => (
             <div key={s.label}>
               <p className="font-heading text-[34px] md:text-[44px] font-light text-text-primary leading-none tracking-tight">{s.value}</p>
@@ -207,7 +337,7 @@ function DeployPreview({ active }) {
       <div className="font-heading text-[20px] font-bold tracking-[-0.02em] mb-5">Add a payment method</div>
       <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-text-muted mb-1.5 block">Card number</span>
       <div className="flex items-center gap-2.5 border border-[#e5e5e5] rounded-xl px-4 py-3 bg-[#f6f5fa] mb-3.5">
-        <span className="font-mono text-[15px] tracking-wider flex-1">4242 4242 4242 4242</span>
+        <span className="font-mono text-[13px] sm:text-[15px] tracking-wider whitespace-nowrap flex-1">4242 4242 4242 4242</span>
         <span className="flex gap-1"><i className="w-6 h-[15px] rounded-sm block" style={{ background: '#1a1f71' }} /><i className="w-6 h-[15px] rounded-sm block" style={{ background: '#eb001b' }} /></span>
       </div>
       <div className="flex gap-3.5">
@@ -226,15 +356,15 @@ function DeployPreview({ active }) {
         { name: 'Small Business', desc: 'Right-sized pentest for a focused attack surface', price: 'Custom', unit: 'contact sales', sel: true, badge: 'POPULAR' },
         { name: 'Enterprise', desc: 'Continuous testing + compliance reporting at scale', price: 'Custom', unit: 'contact sales', sel: false },
       ].map(t => (
-        <div key={t.name} className={`flex items-center gap-4 bg-white rounded-2xl px-5 py-5 transition-all ${t.sel ? 'border-[1.5px] border-blue ring-[3px] ring-blue/[0.08]' : 'border-[1.5px] border-[#ececf0]'}`}>
-          <span className={`w-[22px] h-[22px] rounded-full border-2 grid place-items-center ${t.sel ? 'border-blue' : 'border-[#e4e4e9]'}`}>
-            {t.sel && <span className="w-[11px] h-[11px] rounded-full bg-blue" />}
+        <div key={t.name} className={`flex items-center gap-3 sm:gap-4 bg-white rounded-2xl px-4 py-4 sm:px-5 sm:py-5 transition-all ${t.sel ? 'border-[1.5px] border-blue ring-[3px] ring-blue/[0.08]' : 'border-[1.5px] border-[#ececf0]'}`}>
+          <span className={`flex-none w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full border-2 grid place-items-center ${t.sel ? 'border-blue' : 'border-[#e4e4e9]'}`}>
+            {t.sel && <span className="w-2.5 h-2.5 sm:w-[11px] sm:h-[11px] rounded-full bg-blue" />}
           </span>
-          <div>
-            <div className="font-heading font-bold text-lg flex items-center">{t.name}{t.badge && <span className="ml-2.5 font-mono text-[9.5px] font-bold tracking-[0.08em] text-blue bg-blue/[0.14] px-2 py-0.5 rounded-md">{t.badge}</span>}</div>
-            <div className="text-[13px] text-text-body mt-0.5">{t.desc}</div>
+          <div className="flex-1 min-w-0">
+            <div className="font-heading font-bold text-[15px] sm:text-lg flex items-center flex-wrap gap-y-1">{t.name}{t.badge && <span className="ml-2 font-mono text-[9px] sm:text-[9.5px] font-bold tracking-[0.08em] text-blue bg-blue/[0.14] px-2 py-0.5 rounded-md">{t.badge}</span>}</div>
+            <div className="text-[12px] sm:text-[13px] text-text-body mt-0.5 leading-snug">{t.desc}</div>
           </div>
-          <div className="ml-auto text-right"><b className="font-heading text-2xl font-bold tracking-[-0.03em]">{t.price}</b><span className="block font-mono text-[10.5px] text-text-muted tracking-wide">{t.unit}</span></div>
+          <div className="ml-auto text-right flex-none"><b className="font-heading text-base sm:text-2xl font-bold tracking-[-0.03em]">{t.price}</b><span className="block font-mono text-[9.5px] sm:text-[10.5px] text-text-muted tracking-wide">{t.unit}</span></div>
         </div>
       ))}
     </div>
@@ -243,9 +373,9 @@ function DeployPreview({ active }) {
     <div className="w-full max-w-[440px] rounded-2xl overflow-hidden shadow-xl border border-white/10" style={{ background: '#0a0b0f' }}>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.08]">
         <i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" />
-        <span className="font-mono text-[11.5px] text-white/50 ml-1.5">cybersphere-agent · deploy</span>
+        <span className="font-mono text-[9px] sm:text-[11.5px] text-white/50 ml-1.5 truncate">cybersphere-agent · deploy</span>
       </div>
-      <div className="p-4.5 font-mono text-[12.5px] leading-[1.95] min-h-[200px] p-[18px]">
+      <div className="font-mono text-[9.5px] sm:text-[12.5px] leading-[1.7] sm:leading-[1.95] min-h-[160px] sm:min-h-[200px] p-3 sm:p-[18px]">
         {[
           ['✓', SEV.low, 'Provisioning isolated agent…'],
           ['✓', SEV.low, 'Authenticated read-only access'],
@@ -258,10 +388,10 @@ function DeployPreview({ active }) {
           </motion.div>
         ))}
       </div>
-      <div className="flex items-center gap-2.5 px-4.5 py-3.5 px-[18px] border-t border-white/[0.08]" style={{ background: 'rgba(21,93,252,.08)' }}>
-        <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ background: SEV.low }} />
-        <span className="font-mono text-[12px] text-white">Agent live · hunting attack paths</span>
-        <span className="ml-auto font-mono text-[12px] font-semibold" style={{ color: SEV.low }}>ETA ~2h</span>
+      <div className="flex items-center gap-2 sm:gap-2.5 py-3 px-3 sm:py-3.5 sm:px-[18px] border-t border-white/[0.08]" style={{ background: 'rgba(21,93,252,.08)' }}>
+        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-pulse flex-none" style={{ background: SEV.low }} />
+        <span className="font-mono text-[9.5px] sm:text-[12px] text-white leading-tight">Agent live · hunting attack paths</span>
+        <span className="ml-auto font-mono text-[9.5px] sm:text-[12px] font-semibold flex-none" style={{ color: SEV.low }}>ETA ~2h</span>
       </div>
     </div>
   )
@@ -275,7 +405,7 @@ function Deploy() {
   }, [active])
 
   return (
-    <section id="deploy" className="bg-white rounded-[20px]">
+    <section id="deploy" className="bg-white rounded-[20px] overflow-hidden">
       <div className="max-w-[1376px] mx-auto px-4 md:px-8 py-20 md:py-28">
         <motion.div {...fadeUp} className="max-w-[760px] mb-12 md:mb-16">
           <span className="section-tag mb-6 inline-block">Live in 5 minutes</span>
@@ -288,24 +418,24 @@ function Deploy() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[390px_1fr] gap-6 lg:gap-10 items-stretch">
-          {/* steps rail */}
-          <div className="flex flex-col gap-3">
+        <div className="grid lg:grid-cols-[390px_1fr] gap-4 lg:gap-10 items-stretch">
+          {/* steps rail — full width on mobile, side column on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 lg:gap-3">
             {STEPS.map((s, i) => {
               const Icon = s.icon
               const on = i === active
               return (
                 <button key={s.n} onClick={() => setActive(i)}
-                  className={`relative text-left flex gap-4.5 gap-[18px] items-start p-5 md:px-6 md:py-5 rounded-[20px] border overflow-hidden transition-all hover:-translate-y-0.5 ${on ? 'border-transparent shadow-xl' : 'border-[#ececf0] bg-white hover:shadow-md'}`}
+                  className={`relative text-left flex gap-2.5 lg:gap-[18px] items-start p-3 lg:px-6 lg:py-5 rounded-xl lg:rounded-[20px] border overflow-hidden transition-all hover:-translate-y-0.5 ${on ? 'border-transparent shadow-xl' : 'border-[#ececf0] bg-white hover:shadow-md'}`}
                   style={on ? { background: '#0C0D11' } : undefined}>
-                  <span className={`flex-none w-12 h-12 rounded-[13px] grid place-items-center ${on ? '' : 'bg-blue/[0.08] text-blue'}`}
-                    style={on ? { background: 'rgba(21,93,252,.18)', color: '#fff' } : undefined}>
-                    <Icon className="w-6 h-6" strokeWidth={1.75} />
+                  <span className={`flex-none w-8 h-8 lg:w-12 lg:h-12 rounded-lg lg:rounded-[13px] grid place-items-center ${on ? '' : 'bg-blue/[0.08] text-blue'}`}
+                    style={on ? { background: 'rgba(21,85,255,.18)', color: '#fff' } : undefined}>
+                    <Icon className="w-4 h-4 lg:w-6 lg:h-6" strokeWidth={1.75} />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className={`font-mono text-[11px] font-bold tracking-[0.14em] ${on ? 'text-[#7da6ff]' : 'text-text-muted'}`}>{s.n}</span>
-                    <h4 className={`font-heading text-[19px] font-bold tracking-[-0.015em] mt-1.5 mb-1 ${on ? 'text-white' : 'text-text-primary'}`}>{s.t}</h4>
-                    <p className={`text-[13.5px] font-light leading-snug ${on ? 'text-white/60' : 'text-text-body'}`}>{s.p}</p>
+                    <span className={`font-mono text-[9px] lg:text-[11px] font-bold tracking-[0.14em] ${on ? 'text-[#7da6ff]' : 'text-text-muted'}`}>{s.n}</span>
+                    <h4 className={`font-heading text-[12.5px] lg:text-[19px] font-bold tracking-[-0.015em] leading-tight mt-0.5 lg:mt-1.5 lg:mb-1 ${on ? 'text-white' : 'text-text-primary'}`}>{s.t}</h4>
+                    <p className={`hidden lg:block text-[13.5px] font-light leading-snug ${on ? 'text-white/60' : 'text-text-body'}`}>{s.p}</p>
                   </span>
                   {on && (
                     <motion.span key={active} className="absolute left-0 bottom-0 h-[3px] bg-blue"
@@ -316,8 +446,8 @@ function Deploy() {
             })}
           </div>
           {/* preview */}
-          <div className="relative rounded-[30px] bg-[#f6f5fa] border border-[#ececf0] shadow-md min-h-[520px] grid place-items-center p-7 md:p-12">
-            <motion.div key={active} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="w-full grid place-items-center">
+          <div className="relative overflow-hidden rounded-2xl lg:rounded-[30px] bg-[#f6f5fa] border border-[#ececf0] shadow-md min-h-[340px] md:min-h-[520px] grid place-items-center p-3 md:p-12">
+            <motion.div key={active} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="w-full max-w-full grid place-items-center">
               <DeployPreview active={active} />
             </motion.div>
           </div>
@@ -370,19 +500,19 @@ function Findings() {
           </p>
         </motion.div>
 
-        <motion.div {...fadeUp} className="rounded-[30px] overflow-hidden shadow-xl border border-white/[0.08]" style={{ background: '#0C0D11' }}>
+        <motion.div {...fadeUp} className="rounded-2xl sm:rounded-[30px] overflow-hidden shadow-xl border border-white/[0.08]" style={{ background: '#0C0D11' }}>
           {/* bar */}
-          <div className="flex items-center justify-between flex-wrap gap-3 px-6 py-4.5 py-[18px] border-b border-white/[0.08]" style={{ background: 'rgba(255,255,255,.02)' }}>
-            <div className="flex items-center gap-4">
-              <div className="flex gap-[7px]"><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /></div>
-              <span className="font-mono text-[13px] text-white/70">cybersphere_report — <b className="text-white">acme-corp.io</b> <span className="opacity-50">[sample]</span></span>
+          <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 sm:py-[18px] border-b border-white/[0.08]" style={{ background: 'rgba(255,255,255,.02)' }}>
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="hidden sm:flex gap-[7px]"><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /><i className="w-2.5 h-2.5 rounded-full bg-white/[0.18]" /></div>
+              <span className="font-mono text-[11px] sm:text-[13px] text-white/70 truncate">cybersphere_report — <b className="text-white">acme-corp.io</b> <span className="opacity-50">[sample]</span></span>
             </div>
-            <span className="font-mono text-[11px] font-bold tracking-[0.05em] text-white px-2.5 py-1 rounded-md" style={{ background: SEV.crit }}>ACTION REQUIRED</span>
+            <span className="font-mono text-[9.5px] sm:text-[11px] font-bold tracking-[0.05em] text-white px-2.5 py-1 rounded-md flex-none" style={{ background: SEV.crit }}>ACTION REQUIRED</span>
           </div>
 
-          <div className="grid md:grid-cols-[300px_1fr]">
+          <div className="grid grid-cols-1 md:grid-cols-[300px_minmax(0,1fr)]">
             {/* sidebar */}
-            <aside className="p-7 border-b md:border-b-0 md:border-r border-white/[0.08]">
+            <aside className="min-w-0 p-5 sm:p-7 border-b md:border-b-0 md:border-r border-white/[0.08]">
               <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/45 mb-5">Findings by severity</div>
               <div className="flex flex-col gap-4">
                 {SEV_BARS.map(b => (
@@ -405,23 +535,23 @@ function Findings() {
             </aside>
 
             {/* findings */}
-            <div className="p-3.5">
+            <div className="min-w-0 p-2.5 sm:p-3.5">
               {FINDINGS.map((f, i) => {
                 const isOpen = open === i
                 return (
                   <div key={i} className="rounded-xl overflow-hidden mb-2 border border-white/[0.07]" style={{ background: 'rgba(255,255,255,.02)' }}>
-                    <button onClick={() => setOpen(isOpen ? -1 : i)} className="w-full flex items-center gap-4 px-4.5 py-4 px-[18px] text-left hover:bg-white/[0.04] transition-colors">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.08em] px-2.5 py-1 rounded-md flex-none"
+                    <button onClick={() => setOpen(isOpen ? -1 : i)} className="w-full flex items-center gap-2.5 sm:gap-4 px-3.5 sm:px-[18px] py-3.5 sm:py-4 text-left hover:bg-white/[0.04] transition-colors">
+                      <span className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.08em] px-2 sm:px-2.5 py-1 rounded-md flex-none"
                         style={{ background: f.sev === 'crit' ? 'rgba(229,72,77,.16)' : 'rgba(247,104,8,.16)', color: f.sev === 'crit' ? '#ff7a7e' : '#ffa05a' }}>{f.sev === 'crit' ? 'Critical' : 'High'}</span>
                       <span className="flex-1 min-w-0">
-                        <span className="block font-bold text-[15.5px] text-white tracking-[-0.01em] truncate">{f.t}</span>
-                        <span className="block font-mono text-[11.5px] text-white/45 mt-0.5 truncate">{f.a}</span>
+                        <span className="block font-bold text-[13px] sm:text-[15.5px] text-white tracking-[-0.01em] truncate">{f.t}</span>
+                        <span className="block font-mono text-[10.5px] sm:text-[11.5px] text-white/45 mt-0.5 truncate">{f.a}</span>
                       </span>
-                      <span className="font-mono text-[13px] font-bold text-white flex-none text-center">{f.cvss}<small className="block text-[9px] text-white/40 font-medium tracking-[0.08em] mt-0.5">CVSS</small></span>
-                      <ChevronDown className={`w-4.5 h-[18px] flex-none text-white/40 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                      <span className="font-mono text-[12px] sm:text-[13px] font-bold text-white flex-none text-center">{f.cvss}<small className="block text-[8px] sm:text-[9px] text-white/40 font-medium tracking-[0.08em] mt-0.5">CVSS</small></span>
+                      <ChevronDown className={`w-4 sm:w-[18px] h-4 sm:h-[18px] flex-none text-white/40 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                     </button>
                     <motion.div initial={false} animate={{ height: isOpen ? 'auto' : 0 }} transition={{ duration: 0.35, ease: 'easeInOut' }} className="overflow-hidden">
-                      <div className="grid sm:grid-cols-2 gap-4.5 gap-[18px] px-4.5 pb-4.5 px-[18px] pb-[18px]">
+                      <div className="grid sm:grid-cols-2 gap-4 sm:gap-[18px] px-3.5 pb-3.5 sm:px-[18px] sm:pb-[18px]">
                         <div><div className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/40 mb-1.5">Impact</div><p className="text-[13.5px] text-white/70 leading-relaxed">{f.impact}</p></div>
                         <div><div className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/40 mb-1.5">Remediation</div><p className="text-[13.5px] text-white/70 leading-relaxed">{f.fix}</p>
                           <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold mt-2.5 px-2.5 py-1 rounded-md" style={{ color: SEV.low, background: 'rgba(18,165,148,.14)' }}>FIX EST. · {f.est}</span></div>
@@ -520,7 +650,7 @@ function Industries() {
 
 export default function TestDeploy() {
   return (
-    <div className="flex flex-col gap-1.5 p-1.5">
+    <div className="flex flex-col gap-1.5 p-1.5 overflow-x-hidden">
       <Hero />
       <Deploy />
       <Industries />
