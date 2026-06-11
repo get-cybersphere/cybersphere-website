@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowUpRight, Check, Github, CreditCard, Layers, Crosshair,
-  Globe, AppWindow, Network, Cloud, Mail, Wifi, ChevronDown, Lock, ScanEye,
+  Globe, AppWindow, Network, Cloud, Mail, ChevronDown, Lock, ScanEye,
+  Landmark, HeartPulse, Server, ShoppingCart, Scale, Umbrella,
 } from 'lucide-react'
 import CTASection from '../components/CTASection'
 
@@ -78,10 +79,9 @@ function Hero() {
               Real attack paths,<br /><span className="text-blue">found in hours.</span>
             </h1>
             <p className="mt-7 max-w-xl font-sans text-text-body text-lg font-light leading-relaxed">
-              AI-driven penetration testing that maps how real weaknesses chain into a breach across your
-              apps, cloud, network and AI systems — safely proves each one, and ranks exactly what to fix
-              first. The depth of a seasoned red team, delivered at machine speed and packaged as an
-              audit-ready report.
+              Penetration testing that maps how real weaknesses chain into a breach across your apps, cloud
+              and network. We safely prove each one and rank what to fix first. Red-team depth, delivered
+              in hours as an audit-ready report.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <a href="#deploy" className="inline-flex items-center gap-2.5 text-[15px] font-semibold uppercase tracking-[0.06em] text-white bg-blue hover:bg-blue-hover px-7 py-4 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-[1.03]">
@@ -92,7 +92,7 @@ function Hero() {
               </a>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[12.5px] text-text-muted">
-              {['No credit card required', 'Read-only access', 'Live in 5 minutes'].map(t => (
+              {['Read-only access', 'Safe, non-disruptive testing', 'Live in 5 minutes'].map(t => (
                 <span key={t} className="inline-flex items-center gap-2"><Check className="w-3.5 h-3.5" style={{ color: SEV.low }} />{t}</span>
               ))}
             </div>
@@ -121,41 +121,6 @@ function Hero() {
   )
 }
 
-/* ────────────────────────── ATTACKER'S EYES ────────────────────────── */
-const EYES = [
-  { n: '01', t: 'End-to-end attack paths', p: 'See how isolated weaknesses chain together across code, cloud and network into real exploitation.' },
-  { n: '02', t: 'Real exploits, not theory', p: "Every path is safely validated — so you fix what's actually weaponizable, not a wall of false positives." },
-  { n: '03', t: 'Prioritized by real risk', p: 'Findings ranked by business impact, each paired with a concrete fix. No noise, no 200-page PDFs.' },
-]
-function AttackersEyes() {
-  return (
-    <section className="bg-bg-footer rounded-[20px]">
-      <div className="max-w-[1376px] mx-auto px-4 md:px-8 py-20 md:py-28">
-        <motion.div {...fadeUp} className="max-w-[760px] mb-14">
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#7da6ff]">Through an attacker's eyes</span>
-          <h2 className="font-heading text-white text-3xl md:text-5xl font-bold uppercase tracking-[-0.03em] leading-[0.95] mt-4">
-            We don't scan.<br />We attack.
-          </h2>
-          <p className="mt-5 max-w-xl font-sans text-white/60 text-lg font-light leading-relaxed">
-            Scanners hand you a list. Our agent thinks like an adversary — chaining weaknesses into the exact
-            paths a real attacker would take, from first exploit to full compromise.
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-3 gap-6 md:gap-11">
-          {EYES.map((e, i) => (
-            <motion.div key={e.n} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-              className="border-t border-white/15 pt-6">
-              <div className="font-mono text-[13px] font-bold tracking-[0.1em] text-[#7da6ff]">{e.n}</div>
-              <h4 className="font-heading text-white text-xl md:text-2xl font-semibold tracking-[-0.015em] mt-3.5 mb-2.5">{e.t}</h4>
-              <p className="font-sans text-white/60 text-[15px] font-light leading-relaxed">{e.p}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ────────────────────────── WHAT IT TESTS ────────────────────────── */
 const SURFACES = [
   { icon: Globe, t: 'External Network', p: 'Perimeter, VPNs, exposed services, email spoofing & leaked credentials.' },
@@ -163,7 +128,6 @@ const SURFACES = [
   { icon: Network, t: 'Internal Network', p: 'Assumed-breach: AD, privilege escalation, lateral movement & segmentation.' },
   { icon: Cloud, t: 'Cloud & API', p: 'IAM misconfig, exposed storage & secrets, REST/GraphQL across AWS, Azure & GCP.' },
   { icon: Mail, t: 'Social Engineering', p: 'Phishing & pretext simulations that test your people — safely, never named.' },
-  { icon: Wifi, t: 'Wireless & Physical', p: 'Wi-Fi & rogue APs, network segmentation, and optional on-site testing.' },
   { icon: ScanEye, t: 'AI & LLM Systems', p: 'Prompt injection, model extraction, data poisoning & API abuse — the AI attack surface legacy tools miss.' },
 ]
 function Surfaces() {
@@ -202,7 +166,7 @@ function Surfaces() {
 /* ────────────────────────── DEPLOY IN 4 STEPS ────────────────────────── */
 const STEPS = [
   { icon: Github, n: '01', t: 'Quick Sign-Up', p: 'One click with GitHub or Google. No credit card to start.' },
-  { icon: CreditCard, n: '02', t: 'Secure Wallet', p: 'Add a payment method via Stripe. Encrypted, PCI-compliant.' },
+  { icon: CreditCard, n: '02', t: 'Secure Wallet', p: 'Add a payment method. Encrypted, PCI-compliant.' },
   { icon: Layers, n: '03', t: 'Choose Tier', p: 'From a single recon scan to a continuous red-team agent.' },
   { icon: Crosshair, n: '04', t: 'Deploy Agent', p: 'The agent goes live and starts hunting real attack paths.' },
 ]
@@ -234,7 +198,7 @@ function DeployPreview({ active }) {
         <span className="h-px flex-1 bg-[#ececf0]" />SOC 2 · SSO ready<span className="h-px flex-1 bg-[#ececf0]" />
       </div>
       <div className="flex items-center justify-center gap-2 text-[12.5px] font-mono text-text-muted">
-        <Lock className="w-3.5 h-3.5" style={{ color: SEV.low }} />No credit card · Read-only access
+        <Lock className="w-3.5 h-3.5" style={{ color: SEV.low }} />Read-only · least-privilege access
       </div>
     </div>
   )
@@ -360,7 +324,7 @@ function Deploy() {
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[12.5px] text-text-muted">
-          {['No credit card to start', 'Read-only access', 'Your data is never shared', 'Results in hours, not weeks'].map(t => (
+          {['Read-only access', 'Your data is never shared', 'Safe, non-disruptive testing', 'Results in hours, not weeks'].map(t => (
             <span key={t} className="inline-flex items-center gap-2"><Check className="w-3.5 h-3.5" style={{ color: SEV.low }} />{t}</span>
           ))}
         </div>
@@ -371,15 +335,15 @@ function Deploy() {
 
 /* ────────────────────────── FINDINGS DASHBOARD ────────────────────────── */
 const FINDINGS = [
-  { sev: 'crit', t: 'Default credentials on VPN gateway', a: 'vpn.fcb-corp.io:443', cvss: '9.1',
-    impact: "The remote-access gateway still accepts the vendor's default admin login. Any attacker on the internet could log in and reach the internal network — including core banking systems — in minutes.",
+  { sev: 'crit', t: 'Default credentials on VPN gateway', a: 'vpn.acme-corp.io:443', cvss: '9.1',
+    impact: "The remote-access gateway still accepts the vendor's default admin login. Any attacker on the internet could log in and reach the internal network — including production systems — in minutes.",
     fix: 'Rotate all default credentials, enforce MFA on the gateway, and restrict the admin portal to a management VLAN.', est: '1 day' },
   { sev: 'crit', t: 'Unauthenticated access to customer records (IDOR)', a: '/api/v2/accounts/{id}', cvss: '8.6',
-    impact: "Changing a single number in the account API returned another customer's balance and statements with no extra authorization — a direct privacy and GLBA violation.",
+    impact: "Changing a single number in the account API returned another customer's records with no extra authorization — a direct privacy and compliance violation.",
     fix: 'Enforce object-level authorization server-side on every account endpoint; add automated access-control tests to CI.', est: '3 days' },
   { sev: 'high', t: 'Flat internal network — no segmentation', a: '10.0.0.0/8', cvss: '7.4',
-    impact: 'From a single phished teller workstation we reached the domain controller and core banking VLAN unobstructed. One compromised laptop = full environment.',
-    fix: 'Segment teller, admin, and core banking networks; restrict east-west traffic and require jump-host access to sensitive zones.', est: '2 weeks' },
+    impact: 'From a single phished employee workstation we reached the domain controller and production VLAN unobstructed. One compromised laptop = full environment.',
+    fix: 'Segment user, admin, and production networks; restrict east-west traffic and require jump-host access to sensitive zones.', est: '2 weeks' },
   { sev: 'high', t: '38% of staff entered credentials in phishing test', a: 'social-engineering · 142 employees', cvss: '7.1',
     impact: 'A realistic "IT password reset" email harvested live credentials from over a third of staff within two hours — the most common real-world entry point for ransomware.',
     fix: 'Roll out phishing-resistant MFA, quarterly simulated phishing, and targeted training for high-click departments.', est: 'ongoing' },
@@ -511,12 +475,55 @@ function Compliance() {
   )
 }
 
+/* ────────────────────────── INDUSTRIES / WHO IT'S FOR ────────────────────────── */
+const INDUSTRIES = [
+  { icon: Landmark, t: 'Financial services & fintech', p: 'Payments, customer money and accounts — where a single gap means fraud, regulators and lost trust.' },
+  { icon: HeartPulse, t: 'Healthcare', p: 'Patient records and connected systems held to HIPAA, with real-world safety on the line.' },
+  { icon: Server, t: 'SaaS & technology', p: 'Your product is the attack surface. Ship fast without shipping the next breach.' },
+  { icon: ShoppingCart, t: 'E-commerce & payments', p: 'Card data, checkout flows and customer accounts that attackers actively hunt.' },
+  { icon: Scale, t: 'Professional & legal', p: 'Confidential client data and privilege — the kind of breach you can never walk back.' },
+  { icon: Umbrella, t: 'Insurance', p: 'Policyholder data, claims systems and quoting APIs — high-value targets under tight regulation.' },
+]
+function Industries() {
+  return (
+    <section className="bg-bg-footer rounded-[20px]">
+      <div className="max-w-[1376px] mx-auto px-4 md:px-8 py-20 md:py-28">
+        <motion.div {...fadeUp} className="max-w-[760px] mb-12 md:mb-16">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#7da6ff]">Who it's for</span>
+          <h2 className="font-heading text-white text-3xl md:text-5xl font-bold uppercase tracking-[-0.03em] leading-[0.95] mt-4">
+            Built for teams that<br />can't afford a breach.
+          </h2>
+          <p className="mt-5 max-w-xl font-sans text-white/60 text-lg font-light leading-relaxed">
+            The more regulated and trusted your business, the more a real attack path costs you — in fines,
+            downtime and reputation. If you hold sensitive data, this is built for you.
+          </p>
+        </motion.div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {INDUSTRIES.map((s, i) => {
+            const Icon = s.icon
+            return (
+              <motion.div key={s.t} {...fadeUp} transition={{ ...fadeUp.transition, delay: (i % 3) * 0.08 }}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-7 hover:bg-white/[0.06] transition-colors">
+                <span className="w-[46px] h-[46px] rounded-xl bg-blue/[0.18] grid place-items-center mb-5" style={{ color: '#7da6ff' }}>
+                  <Icon className="w-[23px] h-[23px]" strokeWidth={1.75} />
+                </span>
+                <h4 className="font-heading text-white text-lg font-semibold mb-2">{s.t}</h4>
+                <p className="font-sans text-white/55 text-sm font-light leading-relaxed">{s.p}</p>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function TestDeploy() {
   return (
     <div className="flex flex-col gap-1.5 p-1.5">
       <Hero />
       <Deploy />
-      <AttackersEyes />
+      <Industries />
       <Surfaces />
       <Findings />
       <Compliance />
