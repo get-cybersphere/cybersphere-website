@@ -9,7 +9,6 @@ import AIEmployee from './pages/AIEmployee'
 import Pentesting from './pages/Pentesting'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfService from './pages/TermsOfService'
-import TestDeploy from './pages/TestDeploy' // TEMP: deploy smoke test, safe to remove
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -33,7 +32,6 @@ export default function App() {
           <Route path="/pentesting" element={<Pentesting />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/test" element={<TestDeploy />} /> {/* TEMP: deploy smoke test, safe to remove */}
         </Routes>
       </main>
       <Footer />
