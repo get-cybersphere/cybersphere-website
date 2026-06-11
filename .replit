@@ -1,7 +1,6 @@
 [deployment]
 deploymentTarget = "static"
 publicDir = "dist"
-build = ["sh", "-c", "npm run build"]
 
 [agent]
 expertMode = true
